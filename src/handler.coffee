@@ -2,8 +2,6 @@
 { getEvents } = require './hotkey-data'
 moment = require 'moment'
 
-now = moment.utc()
-
 indexLine = JSON.stringify
   index:
     _index: "hotkeys-#{now.format 'YYYY.MM.DD'}"
@@ -11,6 +9,7 @@ indexLine = JSON.stringify
 indexLine += '\n'
 
 exports.handler = (event, context) ->
+  now = moment.utc()
   body = ''
   for doc in getEvents(now.toISOString())
     body += indexLine
@@ -22,7 +21,3 @@ exports.handler = (event, context) ->
     .catch (e) ->
       console.log "ERROR: #{e}\n#{e.stack}"
       context.fail()
-exports.handler(null,
-  succeed: () -> console.log "Success!"
-  fail: () -> console.log "Failed!"
-)

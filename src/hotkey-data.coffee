@@ -27,53 +27,63 @@ getRecords = (timestamp, host, app) ->
       {
         key: -> "user.0"
         count: -> rand(500, 2000)
+        size: -> 1024
         totalCount: memcachedGetTotalCount
       }
       {
         key: -> "user.#{rand(1000, 1000000000)}"
         count: -> rand(4, 10)
+        size: -> 1024
         totalCount: memcachedGetTotalCount
       }
       {
         key: -> "user.#{rand(1000, 1000000000)}"
         count: -> rand(4, 8)
+        size: -> 1024
         totalCount: memcachedGetTotalCount
       }
       {
         key: -> "user.#{rand(1000, 1000000000)}"
         count: -> rand(3, 6)
+        size: -> 1024
         totalCount: memcachedGetTotalCount
       }
       {
         key: -> "user.#{rand(1000, 1000000000)}"
         count: -> rand(2, 5)
+        size: -> 1024
         totalCount: memcachedGetTotalCount
       }
       {
         key: -> "user.#{rand(1000, 1000000000)}"
         count: -> rand(1, 3)
+        size: -> 1024
         totalCount: memcachedGetTotalCount
       }
       {
         key: -> "user.#{rand(1000, 1000000000)}"
         count: -> rand(1, 2)
+        size: -> 1024
         totalCount: memcachedGetTotalCount
       }
     ]
     'memcached-size': [
       {
         key: -> "user-achievements.3726112"
-        count: -> rand(1, 3) * 1000000000
+        count: -> rand(1, 3)
+        size: -> 1000000000
         totalCount: memcachedSizeTotalCount
       }
       {
         key: -> "user-achievements.2334455"
-        count: -> rand(1, 3) *  720000000
+        count: -> rand(1, 3)
+        size: -> 720000000
         totalCount: memcachedSizeTotalCount
       }
       {
         key: -> "user-achievements.7823422"
-        count: -> rand(1, 3) *  720000000
+        count: -> rand(1, 3)
+        size: -> 640000000
         totalCount: memcachedSizeTotalCount
       }
     ]
@@ -82,6 +92,7 @@ getRecords = (timestamp, host, app) ->
   for category, hotKeys of categories
     for hotKey in hotKeys
       count = hotKey.count()
+      size = hotKey.size() * count # this is the cumulative size so multiply by count
       records.push
         app: app
         host: host
@@ -89,6 +100,7 @@ getRecords = (timestamp, host, app) ->
         topkey_category: category
         topkey_key: hotKey.key()
         topkey_count: count
+        topkey_size: size
         topkey_totalCount: hotKey.totalCount
         topkey_frequency: count / hotKey.totalCount
   records
