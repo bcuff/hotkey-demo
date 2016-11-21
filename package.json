@@ -1,0 +1,20 @@
+{
+  "name": "hotkey-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "coffee src/mappings.coffee"
+  },
+  "author": "Brandon Cuff",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "aws-sdk": "^2.7.5",
+    "bluebird": "^3.4.6",
+    "chance": "^1.0.4",
+    "coffee-script": "^1.11.1",
+    "linq": "^3.0.5",
+    "moment": "^2.16.0"
+  }
+}
