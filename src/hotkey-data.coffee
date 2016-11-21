@@ -11,8 +11,8 @@ randHex = () ->
 
 randHost = () -> "i-#{randHex()}#{randHex()}#{randHex()}#{randHex()}"
 
-rand = (min, max) ->
-  Math.floor(Math.random() * (max - min)) + min
+chance = new Chance()
+rand = (min, max) -> chance.integer({ min: min, max: max})
 mil = 1000000000
 
 apps =
@@ -75,27 +75,27 @@ getRecords = (timestamp, host, app) ->
     ]
     'memcached-size': [
       {
-        key: -> "user-achievements.3726112"
+        key: -> "user-achievements.#{rand(1000, 1000000000)}"
         count: -> rand(1, 3)
         size: -> 1000000000
         totalCount: memcachedSizeTotalCount
       }
       {
-        key: -> "user-achievements.2334455"
+        key: -> "user-achievements.#{rand(1000, 1000000000)}"
         count: -> 1
-        size: -> 720000000
+        size: -> 72000000
         totalCount: memcachedSizeTotalCount
       }
       {
-        key: -> "user-achievements.7823422"
+        key: -> "user-achievements.#{rand(1000, 1000000000)}"
         count: -> 1
-        size: -> 640000000
+        size: -> 64000000
         totalCount: memcachedSizeTotalCount
       }
       {
-        key: -> "user-achievements.6987445"
+        key: -> "user-achievements.#{rand(1000, 1000000000)}"
         count: -> rand(1, 3)
-        size: -> 270000000
+        size: -> 27000000
         totalCount: memcachedSizeTotalCount
       }
     ]
