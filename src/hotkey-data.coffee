@@ -26,8 +26,14 @@ getRecords = (timestamp, host, app) ->
     'memcached-get': [
       {
         key: -> "user.0"
-        count: -> rand(500, 2000)
+        count: -> rand(4, 10)
         size: -> 1024
+        totalCount: memcachedGetTotalCount
+      }
+      {
+        key: -> "user.-1"
+        count: -> rand(1, 4)
+        size: -> 2934
         totalCount: memcachedGetTotalCount
       }
       {
@@ -76,14 +82,20 @@ getRecords = (timestamp, host, app) ->
       }
       {
         key: -> "user-achievements.2334455"
-        count: -> rand(1, 3)
+        count: -> 1
         size: -> 720000000
         totalCount: memcachedSizeTotalCount
       }
       {
         key: -> "user-achievements.7823422"
-        count: -> rand(1, 3)
+        count: -> 1
         size: -> 640000000
+        totalCount: memcachedSizeTotalCount
+      }
+      {
+        key: -> "user-achievements.6987445"
+        count: -> rand(1, 3)
+        size: -> 270000000
         totalCount: memcachedSizeTotalCount
       }
     ]
